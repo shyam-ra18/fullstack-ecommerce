@@ -8,6 +8,14 @@ export function fetchAllProducts() {
   });
 }
 
+export function fetchProductById(id) {
+  return new Promise(async (resolve) => {
+    const response = await axios.get("http://localhost:8080/products/"+id);
+    const data = response.data;
+    resolve({ data });
+  });
+}
+
 export function fetchProductsByFilters(filter, sort, pagination) {
   let queryString = "";
   for (let key in filter) {
