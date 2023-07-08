@@ -1062,43 +1062,98 @@
           "pinCode": "362002"
         },
         {
-          "name": "test",
-          "email": "test@gmail.com",
-          "phone": "1234567890",
-          "street": "testing address...",
-          "city": "ahmedabad",
-          "region": "gujarat",
-          "pinCode": "382350"
+          "name": "John Wick",
+          "email": "johnw12@gmail.com",
+          "phone": "7671239871",
+          "street": "36 street , wallmart shopping",
+          "city": "Cichago",
+          "region": "US",
+          "pinCode": "454624"
         }
       ],
       "id": 1
     }
   ],
-  "cart": [
-    {
-      "id": 5,
-      "title": "Huawei P30",
-      "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
-      "price": 499,
-      "discountPercentage": 10.58,
-      "rating": 4.09,
-      "stock": 32,
-      "brand": "Huawei",
-      "category": "smartphones",
-      "thumbnail": "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/5/1.jpg",
-        "https://i.dummyjson.com/data/products/5/2.jpg",
-        "https://i.dummyjson.com/data/products/5/3.jpg"
-      ],
-      "quantity": 1,
-      "user": 1
-    }
-  ],
+  "cart": [],
   "orders": [
     {
-      "{\"items\":[{\"id\":5,\"title\":\"Huawei P30\",\"description\":\"Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.\",\"price\":499,\"discountPercentage\":10.58,\"rating\":4.09,\"stock\":32,\"brand\":\"Huawei\",\"category\":\"smartphones\",\"thumbnail\":\"https://i.dummyjson.com/data/products/5/thumbnail.jpg\",\"images\":[\"https://i.dummyjson.com/data/products/5/1.jpg\",\"https://i.dummyjson.com/data/products/5/2.jpg\",\"https://i.dummyjson.com/data/products/5/3.jpg\"],\"quantity\":1,\"user\":1}],\"totalAmount\":499,\"totalItems\":1,\"user\":{\"email\":\"admin12@gmail.com\",\"password\":\"Admin@1234\",\"addresses\":[{\"name\":\"Shyam Patel\",\"email\":\"shyam.radadiya100@gmail.com\",\"phone\":\"12346790\",\"street\":\"gopalnagar nr. joshipura\",\"city\":\"JUNAGADH\",\"region\":\"gujarat\",\"pinCode\":\"362002\"},{\"name\":\"test\",\"email\":\"test@gmail.com\",\"phone\":\"1234567890\",\"street\":\"testing address...\",\"city\":\"ahmedabad\",\"region\":\"gujarat\",\"pinCode\":\"382350\"}],\"id\":1},\"paymentMethod\":\"card\",\"selectedAddress\":{\"name\":\"Shyam Patel\",\"email\":\"shyam.radadiya100@gmail.com\",\"phone\":\"12346790\",\"street\":\"gopalnagar nr. joshipura\",\"city\":\"JUNAGADH\",\"region\":\"gujarat\",\"pinCode\":\"362002\"}}": "",
-      "id": 1
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 2,
+          "user": 1,
+          "id": 6
+        }
+      ],
+      "totalAmount": 1798,
+      "totalItems": 2,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Qwerty123",
+        "addresses": [
+          {
+            "name": "Abhishek R",
+            "email": "test@gmail.com",
+            "phone": "1234567788",
+            "street": "11th Main",
+            "city": "Banaglore",
+            "state": "Karnataka",
+            "pinCode": "560034"
+          },
+          {
+            "name": "Abhishek R",
+            "email": "test@gmail.com",
+            "phone": "1234567788",
+            "street": "11th Main",
+            "city": "Banaglore",
+            "state": "Karnataka",
+            "pinCode": "560034"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Abhishek R",
+        "email": "test@gmail.com",
+        "phone": "1234567788",
+        "street": "11th Main",
+        "city": "Banaglore",
+        "state": "Karnataka",
+        "pinCode": "560034"
+      },
+      "status": "pending",
+      "id": 2
+    },
+    {
+      "{\"items\":[{\"{\\\"title\\\":\\\"iPhone 9\\\",\\\"description\\\":\\\"An apple mobile which is nothing like apple\\\",\\\"price\\\":549,\\\"discountPercentage\\\":12.96,\\\"rating\\\":4.69,\\\"stock\\\":94,\\\"brand\\\":\\\"Apple\\\",\\\"category\\\":\\\"smartphones\\\",\\\"thumbnail\\\":\\\"https://i.dummyjson.com/data/products/1/thumbnail.jpg\\\",\\\"images\\\":[\\\"https://i.dummyjson.com/data/products/1/1.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/2.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/3.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/4.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/thumbnail.jpg\\\"],\\\"quantity\\\":1,\\\"user\\\":1}\":\"\",\"id\":1}],\"totalAmount\":null,\"totalItems\":null,\"user\":{\"email\":\"admin12@gmail.com\",\"password\":\"Admin@1234\",\"addresses\":[{\"name\":\"Shyam Patel\",\"email\":\"shyam.radadiya100@gmail.com\",\"phone\":\"12346790\",\"street\":\"gopalnagar nr. joshipura\",\"city\":\"JUNAGADH\",\"region\":\"gujarat\",\"pinCode\":\"362002\"},{\"name\":\"test\",\"email\":\"test@gmail.com\",\"phone\":\"1234567890\",\"street\":\"testing address...\",\"city\":\"ahmedabad\",\"region\":\"gujarat\",\"pinCode\":\"382350\"}],\"id\":1},\"paymentMethod\":\"cash\",\"selectedAddress\":{\"name\":\"Shyam Patel\",\"email\":\"shyam.radadiya100@gmail.com\",\"phone\":\"12346790\",\"street\":\"gopalnagar nr. joshipura\",\"city\":\"JUNAGADH\",\"region\":\"gujarat\",\"pinCode\":\"362002\"},\"status\":\"pending\"}": "",
+      "id": 3
+    },
+    {
+      "{\"items\":[{\"{\\\"title\\\":\\\"iPhone 9\\\",\\\"description\\\":\\\"An apple mobile which is nothing like apple\\\",\\\"price\\\":549,\\\"discountPercentage\\\":12.96,\\\"rating\\\":4.69,\\\"stock\\\":94,\\\"brand\\\":\\\"Apple\\\",\\\"category\\\":\\\"smartphones\\\",\\\"thumbnail\\\":\\\"https://i.dummyjson.com/data/products/1/thumbnail.jpg\\\",\\\"images\\\":[\\\"https://i.dummyjson.com/data/products/1/1.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/2.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/3.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/4.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/thumbnail.jpg\\\"],\\\"quantity\\\":1,\\\"user\\\":1}\":\"\",\"id\":1}],\"totalAmount\":null,\"totalItems\":null,\"user\":{\"email\":\"admin12@gmail.com\",\"password\":\"Admin@1234\",\"addresses\":[{\"name\":\"Shyam Patel\",\"email\":\"shyam.radadiya100@gmail.com\",\"phone\":\"12346790\",\"street\":\"gopalnagar nr. joshipura\",\"city\":\"JUNAGADH\",\"region\":\"gujarat\",\"pinCode\":\"362002\"},{\"name\":\"test\",\"email\":\"test@gmail.com\",\"phone\":\"1234567890\",\"street\":\"testing address...\",\"city\":\"ahmedabad\",\"region\":\"gujarat\",\"pinCode\":\"382350\"}],\"id\":1},\"paymentMethod\":\"cash\",\"selectedAddress\":{\"name\":\"test\",\"email\":\"test@gmail.com\",\"phone\":\"1234567890\",\"street\":\"testing address...\",\"city\":\"ahmedabad\",\"region\":\"gujarat\",\"pinCode\":\"382350\"},\"status\":\"pending\"}": "",
+      "id": 4
+    },
+    {
+      "{\"items\":[{\"{\\\"title\\\":\\\"iPhone 9\\\",\\\"description\\\":\\\"An apple mobile which is nothing like apple\\\",\\\"price\\\":549,\\\"discountPercentage\\\":12.96,\\\"rating\\\":4.69,\\\"stock\\\":94,\\\"brand\\\":\\\"Apple\\\",\\\"category\\\":\\\"smartphones\\\",\\\"thumbnail\\\":\\\"https://i.dummyjson.com/data/products/1/thumbnail.jpg\\\",\\\"images\\\":[\\\"https://i.dummyjson.com/data/products/1/1.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/2.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/3.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/4.jpg\\\",\\\"https://i.dummyjson.com/data/products/1/thumbnail.jpg\\\"],\\\"quantity\\\":1,\\\"user\\\":1}\":\"\",\"id\":1}],\"totalAmount\":null,\"totalItems\":null,\"user\":{\"email\":\"admin12@gmail.com\",\"password\":\"Admin@1234\",\"addresses\":[{\"name\":\"Shyam Patel\",\"email\":\"shyam.radadiya100@gmail.com\",\"phone\":\"12346790\",\"street\":\"gopalnagar nr. joshipura\",\"city\":\"JUNAGADH\",\"region\":\"gujarat\",\"pinCode\":\"362002\"},{\"name\":\"test\",\"email\":\"test@gmail.com\",\"phone\":\"1234567890\",\"street\":\"testing address...\",\"city\":\"ahmedabad\",\"region\":\"gujarat\",\"pinCode\":\"382350\"}],\"id\":1},\"paymentMethod\":\"cash\",\"selectedAddress\":{\"name\":\"Shyam Patel\",\"email\":\"shyam.radadiya100@gmail.com\",\"phone\":\"12346790\",\"street\":\"gopalnagar nr. joshipura\",\"city\":\"JUNAGADH\",\"region\":\"gujarat\",\"pinCode\":\"362002\"},\"status\":\"pending\"}": "",
+      "id": 5
+    },
+    {
+      "{\"items\":[{\"{\\\"title\\\":\\\"iPhone X\\\",\\\"description\\\":\\\"SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...\\\",\\\"price\\\":899,\\\"discountPercentage\\\":17.94,\\\"rating\\\":4.44,\\\"stock\\\":34,\\\"brand\\\":\\\"Apple\\\",\\\"category\\\":\\\"smartphones\\\",\\\"thumbnail\\\":\\\"https://i.dummyjson.com/data/products/2/thumbnail.jpg\\\",\\\"images\\\":[\\\"https://i.dummyjson.com/data/products/2/1.jpg\\\",\\\"https://i.dummyjson.com/data/products/2/2.jpg\\\",\\\"https://i.dummyjson.com/data/products/2/3.jpg\\\",\\\"https://i.dummyjson.com/data/products/2/thumbnail.jpg\\\"],\\\"quantity\\\":1,\\\"user\\\":1}\":\"\",\"id\":1,\"{\\\"{\\\\\\\"title\\\\\\\":\\\\\\\"iPhone X\\\\\\\",\\\\\\\"description\\\\\\\":\\\\\\\"SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...\\\\\\\",\\\\\\\"price\\\\\\\":899,\\\\\\\"discountPercentage\\\\\\\":17.94,\\\\\\\"rating\\\\\\\":4.44,\\\\\\\"stock\\\\\\\":34,\\\\\\\"brand\\\\\\\":\\\\\\\"Apple\\\\\\\",\\\\\\\"category\\\\\\\":\\\\\\\"smartphones\\\\\\\",\\\\\\\"thumbnail\\\\\\\":\\\\\\\"https://i.dummyjson.com/data/products/2/thumbnail.jpg\\\\\\\",\\\\\\\"images\\\\\\\":[\\\\\\\"https://i.dummyjson.com/data/products/2/1.jpg\\\\\\\",\\\\\\\"https://i.dummyjson.com/data/products/2/2.jpg\\\\\\\",\\\\\\\"https://i.dummyjson.com/data/products/2/3.jpg\\\\\\\",\\\\\\\"https://i.dummyjson.com/data/products/2/thumbnail.jpg\\\\\\\"],\\\\\\\"quantity\\\\\\\":1,\\\\\\\"user\\\\\\\":1}\\\":\\\"\\\",\\\"id\\\":1,\\\"quantity\\\":\\\"2\\\"}\":\"\"}],\"totalAmount\":null,\"totalItems\":null,\"user\":{\"email\":\"admin12@gmail.com\",\"password\":\"Admin@1234\",\"addresses\":[{\"name\":\"Shyam Patel\",\"email\":\"shyam.radadiya100@gmail.com\",\"phone\":\"12346790\",\"street\":\"gopalnagar nr. joshipura\",\"city\":\"JUNAGADH\",\"region\":\"gujarat\",\"pinCode\":\"362002\"},{\"name\":\"test\",\"email\":\"test@gmail.com\",\"phone\":\"1234567890\",\"street\":\"testing address...\",\"city\":\"ahmedabad\",\"region\":\"gujarat\",\"pinCode\":\"382350\"}],\"id\":1},\"paymentMethod\":\"card\",\"selectedAddress\":{\"name\":\"test\",\"email\":\"test@gmail.com\",\"phone\":\"1234567890\",\"street\":\"testing address...\",\"city\":\"ahmedabad\",\"region\":\"gujarat\",\"pinCode\":\"382350\"},\"status\":\"pending\"}": "",
+      "id": 6
     }
   ]
 }

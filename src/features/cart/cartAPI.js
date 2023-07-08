@@ -36,6 +36,17 @@ export function deleteFromCart(itemId) {
   return new Promise(async (resolve) => {
     const response = await axios.delete("http://localhost:8080/cart/" + itemId);
     const data = await response.data;
-    resolve({ data:{id:itemId} });
+    resolve({ data: { id: itemId } });
+  });
+}
+
+export function resetCart(userId) {
+  return new Promise(async (resolve) => {
+    const response = await fetchItemsByUSerId(userId);
+    const items = response.data;
+    for (let item of items) {
+      await deleteFromCart(item.id);
+    }
+    resolve({ staus: "Success" });
   });
 }

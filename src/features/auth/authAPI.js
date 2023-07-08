@@ -23,28 +23,23 @@ export function checkUser(loginInfo) {
     const email = loginInfo.email;
     const password = loginInfo.password;
     const response = await axios.get(
-      "http://localhost:8080/users?email=" + email);
+      "http://localhost:8080/users?email=" + email
+    );
     const data = await response.data;
     if (data.length) {
       if (password === data[0].password) {
         resolve({ data: data[0] });
       } else {
-        reject({ message: 'wrong credentials' });
+        reject({ message: "wrong credentials" });
       }
     } else {
-      reject({ message: 'user not found' });
+      reject({ message: "user not found" });
     }
   });
 }
 
-export function updateUser(update) {
+export function signOutUser(userId) {
   return new Promise(async (resolve) => {
-    const response = await axios.patch(
-      "http://localhost:8080/users/"+update.id,
-      JSON.stringify(update),
-      config
-    );
-    const data = await response.data;
-    resolve({ data });
+    resolve({ data: "success" });
   });
 }
