@@ -1,5 +1,11 @@
 import axios from "axios";
 
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
 export function fetchAllProducts() {
   return new Promise(async (resolve) => {
     const response = await axios.get("http://localhost:8080/products");
@@ -10,8 +16,29 @@ export function fetchAllProducts() {
 
 export function fetchProductById(id) {
   return new Promise(async (resolve) => {
-    const response = await axios.get("http://localhost:8080/products/"+id);
+    const response = await axios.get("http://localhost:8080/products/" + id);
     const data = response.data;
+    resolve({ data });
+  });
+}
+
+export function createProduct(product) {
+  return new Promise(async (resolve) => {
+    const response = await axios.post("http://localhost:8080/products/", {
+      product,
+    });
+    const data = response.data;
+    resolve({ data });
+  });
+}
+
+export function updateProduct(update) {
+  return new Promise(async (resolve) => {
+    const response = await axios.patch(
+      "http://localhost:8080/products/" + update.id,
+      update
+    );
+    const data = await response.data;
     resolve({ data });
   });
 }
@@ -40,7 +67,6 @@ export function fetchProductsByFilters(filter, sort, pagination) {
     resolve({ data: { products: data, totalItems: +totalItems } });
   });
 }
-
 
 export function fetchAllCategories() {
   return new Promise(async (resolve) => {

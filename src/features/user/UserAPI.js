@@ -28,8 +28,7 @@ export function updateUser(update) {
   return new Promise(async (resolve) => {
     const response = await axios.patch(
       "http://localhost:8080/users/" + update.id,
-      JSON.stringify(update),
-      config
+      update
     );
     const data = await response.data;
     resolve({ data });

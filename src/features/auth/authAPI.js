@@ -1,18 +1,8 @@
 import axios from "axios";
 
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
-
 export function createUser(userData) {
   return new Promise(async (resolve) => {
-    const response = await axios.post(
-      "http://localhost:8080/users",
-      JSON.stringify(userData),
-      config
-    );
+    const response = await axios.post("http://localhost:8080/users", userData);
     const data = await response.data;
     resolve({ data });
   });
