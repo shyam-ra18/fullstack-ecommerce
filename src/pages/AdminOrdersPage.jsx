@@ -4,9 +4,11 @@ import AdminOrders from "../features/admin/components/AdminOrders";
 
 const AdminOrdersPage = () => {
   return (
-    <Navbar>
-      <AdminOrders />
-    </Navbar>
+    <div>
+      <Navbar>
+        <AdminOrders />
+      </Navbar>
+    </div>
   );
 };
 

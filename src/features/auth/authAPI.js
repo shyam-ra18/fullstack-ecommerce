@@ -2,7 +2,10 @@ import axios from "axios";
 
 export function createUser(userData) {
   return new Promise(async (resolve) => {
-    const response = await axios.post("http://localhost:8080/users", userData);
+    const response = await axios.post(
+      "http://localhost:8080/auth/signup",
+      userData
+    );
     const data = await response.data;
     resolve({ data });
   });
@@ -10,20 +13,21 @@ export function createUser(userData) {
 
 export function checkUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
-    const email = loginInfo.email;
-    const password = loginInfo.password;
-    const response = await axios.get(
-      "http://localhost:8080/users?email=" + email
-    );
-    const data = await response.data;
-    if (data.length) {
-      if (password === data[0].password) {
-        resolve({ data: data[0] });
+    try {
+      const response = await axios.post("http://localhost:8080/auth/login", {
+        email: loginInfo.email,
+        password: loginInfo.password,
+      });
+      if (response.status >= 200 && response.status < 300) {
+        const data = response.data;
+        console.log("check...", data);
+        resolve({ data });
       } else {
-        reject({ message: "wrong credentials" });
+        const err = response;
+        reject(err);
       }
-    } else {
-      reject({ message: "user not found" });
+    } catch (error) {
+      reject(error);
     }
   });
 }

@@ -2,11 +2,17 @@ import { useEffect, useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductByIdAsync, selectProductById } from "../ProductSlice";
+import {
+  fetchProductByIdAsync,
+  selectProductById,
+  selectProductStatus,
+} from "../ProductSlice";
 import { useParams } from "react-router-dom";
 import { addToCartAsync, selectItem } from "../../cart/cartSlice";
 import { selectLoggedInUser } from "../../auth/authSlice";
 import { discountedPrice } from "../../../app/constants";
+import { useAlert } from "react-alert";
+import { ThreeDots } from "react-loader-spinner";
 
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -72,18 +78,24 @@ export default function ProductDetails() {
   const user = useSelector(selectLoggedInUser);
   const product = useSelector(selectProductById);
   const items = useSelector(selectItem);
+  const status = useSelector(selectProductStatus);
   const dispatch = useDispatch();
   const params = useParams();
+  const alert = useAlert();
 
   const handleCart = (e) => {
     e.preventDefault();
-    if (items.findIndex((item) => item.productId === product.id) < 0) {
-      const newItem = { ...product, productId:product.id,  quantity: 1, user: user.id };
+    if (items.findIndex((item) => item.product.id === product.id) < 0) {
+      const newItem = {
+        product: product.id,
+        quantity: 1,
+        user: user.data.id,
+      };
       delete newItem["id"];
       dispatch(addToCartAsync(newItem));
-    }
-    else{
-      console.log("Already Added")
+      alert.success("Item Added To Cart");
+    } else {
+      alert.error("Item Already Added");
     }
   };
 
@@ -134,6 +146,20 @@ export default function ProductDetails() {
               </li>
             </ol>
           </nav>
+          {status === "loading" && (
+            <div className="flex items-center mx-auto justify-center">
+              <ThreeDots
+                height="100"
+                width="200"
+                radius="9"
+                color="#4F46E5"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{}}
+                wrapperClassName=""
+                visible={true}
+              />
+            </div>
+          )}
 
           {/* Image gallery */}
           <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">

@@ -4,9 +4,11 @@ import ProductForm from "../features/admin/ProductForm";
 
 const AdminProductFormPage = () => {
   return (
-    <Navbar>
-      <ProductForm />
-    </Navbar>
+    <div>
+      <Navbar>
+        <ProductForm />
+      </Navbar>
+    </div>
   );
 };
 

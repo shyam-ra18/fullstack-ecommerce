@@ -7,6 +7,7 @@ import {
   selectAllBrands,
   selectAllCategories,
   selectAllProducts,
+  selectProductStatus,
   selectTotalItems,
 } from "../ProductSlice";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
@@ -17,13 +18,12 @@ import {
   MinusIcon,
   PlusIcon,
   Squares2X2Icon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
   StarIcon,
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { ITEM_PER_PAGE, discountedPrice } from "../../../app/constants";
 import Pagination from "../../common/Pagination";
+import { ThreeDots } from "react-loader-spinner";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
@@ -41,6 +41,7 @@ export default function ProductList() {
   const brands = useSelector(selectAllBrands);
   const categories = useSelector(selectAllCategories);
   const totalItems = useSelector(selectTotalItems);
+  const status = useSelector(selectProductStatus);
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [filter, setFilter] = useState({});
@@ -192,7 +193,7 @@ export default function ProductList() {
               <DesktopFilter handleFilter={handleFilter} filters={filters} />
 
               {/* Product grid */}
-              <ProductGrid handleFilter={handleFilter} products={products} />
+              <ProductGrid status={status} products={products} />
             </div>
           </section>
           {/* Pagination  */}
@@ -387,13 +388,26 @@ function DesktopFilter({ handleFilter, filters }) {
   );
 }
 
-
-function ProductGrid({ handleFilter, products }) {
+function ProductGrid({ status, products }) {
   return (
     <div className="lg:col-span-3">
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+            {status === "loading" && (
+              <div className="flex items-center mx-auto justify-center">
+                <ThreeDots
+                  height="100"
+                  width="200"
+                  radius="9"
+                  color="#4F46E5"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{}}
+                  wrapperClassName=""
+                  visible={true}
+                />
+              </div>
+            )}
             {products.map((product) => (
               <Link to={`product-detail/${product.id}`}>
                 <div
@@ -419,10 +433,7 @@ function ProductGrid({ handleFilter, products }) {
                       </p>
                     </div>
                     <div className="text-base flex-col items-end font-medium text-gray-900">
-                      <p>
-                        $
-                        {discountedPrice(product)}
-                      </p>
+                      <p>${discountedPrice(product)}</p>
                       <p className="text-sm text-gray-500 line-through">
                         ${product.price}
                       </p>

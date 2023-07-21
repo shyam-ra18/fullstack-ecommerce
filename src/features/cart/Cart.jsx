@@ -3,28 +3,34 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   deleteItemFromCartAsync,
   selectItem,
+  selectItemStatus,
   updateItemAsync,
 } from "./cartSlice";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, Navigate } from "react-router-dom";
 import { discountedPrice } from "../../app/constants";
+import { ThreeDots } from "react-loader-spinner";
+import Modal from "../common/Modal";
 
 export default function Cart() {
   const items = useSelector(selectItem);
+  const dispatch = useDispatch();
+  const status = useSelector(selectItemStatus);
+  const [open, setOpen] = useState(true);
+  const [openModal, setOpenModal] = useState(null);
+
   const totalAmount = items.reduce(
-    (amount, item) => discountedPrice(item) * item.quantity + amount,
+    (amount, item) => discountedPrice(item.product) * item.quantity + amount,
     0
   );
   const totalItems = items.reduce(
     (total, item) => item.quantity * total + item.quantity,
     0
   );
-  const dispatch = useDispatch();
-  const [open, setOpen] = useState(true);
 
   const handleQuantity = (e, item) => {
-    dispatch(updateItemAsync({ ...item, quantity: e.target.value }));
+    dispatch(updateItemAsync({ id: item.id, quantity: Number(e.target.value) }));
   };
 
   const handleRemove = (itemId) => {
@@ -41,12 +47,26 @@ export default function Cart() {
         <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-10 border-t border-gray-200 mt-6">
           <div className="flow-root">
             <ul role="list" className=" divide-y divide-gray-200">
+              {status === "loading" && (
+                <div className="flex items-center mx-auto justify-center">
+                  <ThreeDots
+                    height="100"
+                    width="200"
+                    radius="9"
+                    color="#4F46E5"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                  />
+                </div>
+              )}
               {items.map((item) => (
                 <li key={item.id} className="flex py-6 ">
                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                     <img
-                      src={item.thumbnail}
-                      alt={item.title}
+                      src={item.product.thumbnail}
+                      alt={item.product.title}
                       className="h-full w-full object-cover object-center"
                     />
                   </div>
@@ -55,11 +75,13 @@ export default function Cart() {
                     <div>
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <h3>
-                          <a href={item.href}>{item.title}</a>
+                          <a href={item.product.href}>{item.product.title}</a>
                         </h3>
-                        <p className="ml-4">${discountedPrice(item)}</p>
+                        <p className="ml-4">${discountedPrice(item.product)}</p>
                       </div>
-                      <p className="mt-1 text-sm text-gray-500">{item.brand}</p>
+                      <p className="mt-1 text-sm text-gray-500">
+                        {item.product.brand}
+                      </p>
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">
                       <div className="text-gray-500 ">
@@ -80,10 +102,19 @@ export default function Cart() {
                           <option value="4">4</option>
                         </select>
                       </div>
+                      <Modal
+                        title={`Delete ${item.product.title}`}
+                        message="Are you sure you want to delete this Cart item ?"
+                        dangerOption="Delete"
+                        cancelOption="Cancel"
+                        dangerAction={() => handleRemove(item.id)}
+                        cancelAction={() => setOpenModal(null)}
+                        showModal={openModal === item.id}
+                      />
 
                       <div className="flex">
                         <button
-                          onClick={() => handleRemove(item.id)}
+                          onClick={() => setOpenModal(item.id)}
                           type="button"
                           className="font-medium text-indigo-600 hover:text-indigo-500"
                         >

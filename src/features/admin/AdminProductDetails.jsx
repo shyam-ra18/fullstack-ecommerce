@@ -76,7 +76,7 @@ export default function AdminProductDetails() {
 
   const handleCart = (e) => {
     e.preventDefault();
-    const newItem = { ...product, quantity: 1, user: user.id };
+    const newItem = { ...product, quantity: 1, user: user.data.id };
     delete newItem["id"];
     dispatch(addToCartAsync(newItem));
   };

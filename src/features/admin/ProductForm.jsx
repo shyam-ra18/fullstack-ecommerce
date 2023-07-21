@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,6 +12,7 @@ import {
 } from "../productList/ProductSlice";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import Modal from "../common/Modal";
 
 const ProductForm = () => {
   const {
@@ -27,9 +28,10 @@ const ProductForm = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const selectedProduct = useSelector(selectProductById);
+  const [openModal, setOpenModal] = useState(null);
 
   const handleDelete = () => {
-    const product = {...selectedProduct};
+    const product = { ...selectedProduct };
     product.deleted = true;
     dispatch(updateProductAsync(product));
   };
@@ -81,7 +83,7 @@ const ProductForm = () => {
       <div className="space-y-12 w-4/5 mx-auto bg-white p-12 rounded-md">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base text-left font-semibold leading-7 text-gray-900">
-            Profile
+            Add Product
           </h2>
           <p className="mt-1 text-left text-sm leading-6 text-gray-600">
             This information will be displayed publicly so be careful what you
@@ -90,6 +92,7 @@ const ProductForm = () => {
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-6">
+              {selectedProduct?.deleted && <h2 className="text-red-500" >This Product is Deleted</h2>  }
               <label
                 htmlFor="title"
                 className="block text-left text-sm font-medium leading-6 text-gray-900"
@@ -389,9 +392,12 @@ const ProductForm = () => {
         >
           Cancel
         </button>
-        {selectedProduct && (
+        {selectedProduct && !selectedProduct?.deleted && (
           <button
-            onClick={handleDelete}
+            onClick={(e) => {
+              e.preventDefault();
+              setOpenModal(true);
+            }}
             type="button"
             className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
           >
@@ -405,6 +411,15 @@ const ProductForm = () => {
           Save
         </button>
       </div>
+      <Modal
+        title={`Delete ${selectedProduct?.title}`}
+        message="Are you sure you want to delete this Product ?"
+        dangerOption="Delete"
+        cancelOption="Cancel"
+        dangerAction={handleDelete}
+        cancelAction={() => setOpenModal(null)}
+        showModal={openModal}
+      />
     </form>
   );
 };

@@ -110,5 +110,6 @@ export const authSlice = createSlice({
 export const { increment } = authSlice.actions;
 
 export const selectItem = (state) => state.cart.items;
+export const selectItemStatus = (state) => state.cart.status;
 
 export default authSlice.reducer;
