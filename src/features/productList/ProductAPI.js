@@ -6,14 +6,6 @@ const config = {
   },
 };
 
-export function fetchAllProducts() {
-  return new Promise(async (resolve) => {
-    const response = await axios.get("http://localhost:8080/products");
-    const data = response.data;
-    resolve({ data });
-  });
-}
-
 export function fetchProductById(id) {
   return new Promise(async (resolve) => {
     const response = await axios.get("http://localhost:8080/products/" + id);
@@ -43,7 +35,7 @@ export function updateProduct(update) {
   });
 }
 
-export function fetchProductsByFilters(filter, sort, pagination) {
+export function fetchProductsByFilters(filter, sort, pagination, admin) {
   let queryString = "";
   for (let key in filter) {
     const categoryValues = filter[key];
@@ -57,6 +49,9 @@ export function fetchProductsByFilters(filter, sort, pagination) {
   }
   for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;
+  }
+  if(admin){
+    queryString += `admin=true`;
   }
   return new Promise(async (resolve) => {
     const response = await axios.get(

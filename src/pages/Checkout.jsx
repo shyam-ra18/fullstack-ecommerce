@@ -7,12 +7,11 @@ import {
   updateItemAsync,
 } from "../features/cart/cartSlice";
 import { useForm } from "react-hook-form";
-import { updateUserAsync } from "../features/auth/authSlice";
 import {
   createOrderAsync,
   selectCurrentOrder,
 } from "../features/order/orderSlice";
-import { selectUserInfo } from "../features/user/UserSlice";
+import { selectUserInfo, updateUserAsync } from "../features/user/UserSlice";
 import { discountedPrice } from "../app/constants";
 import { useEffect } from "react";
 
@@ -62,7 +61,7 @@ const Checkout = () => {
       items,
       totalAmount,
       totalItems,
-      user,
+      user:user.id,
       paymentMethod,
       selectedAddress,
       status: "pending",
@@ -86,7 +85,6 @@ const Checkout = () => {
             <form
               className="bg-white p-6 rounded-lg"
               onSubmit={handleSubmit((data) => {
-                console.log(data);
                 dispatch(
                   updateUserAsync({
                     ...user,

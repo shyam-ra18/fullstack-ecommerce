@@ -55,7 +55,7 @@ export default function Navbar({ children }) {
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) =>
-                          item[user?.role] ? (
+                          item[user?.data.role] ? (
                             <Link
                               key={item.name}
                               to={item.link}

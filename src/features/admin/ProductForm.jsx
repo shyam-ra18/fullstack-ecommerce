@@ -13,6 +13,7 @@ import {
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import Modal from "../common/Modal";
+import { useAlert } from "react-alert";
 
 const ProductForm = () => {
   const {
@@ -29,6 +30,8 @@ const ProductForm = () => {
   const params = useParams();
   const selectedProduct = useSelector(selectProductById);
   const [openModal, setOpenModal] = useState(null);
+  const alert = useAlert();
+
 
   const handleDelete = () => {
     const product = { ...selectedProduct };
@@ -52,7 +55,9 @@ const ProductForm = () => {
       setValue("discountPercentage", selectedProduct.discountPercentage);
       setValue("thumbnail", selectedProduct.thumbnail);
       setValue("stock", selectedProduct.stock);
-      setValue("images", selectedProduct.images);
+      setValue("image1", selectedProduct.images[0]);
+      setValue("image2", selectedProduct.images[1]);
+      setValue("image3", selectedProduct.images[2]);
       setValue("brand", selectedProduct.brand);
       setValue("category", selectedProduct.category);
     }
@@ -62,20 +67,30 @@ const ProductForm = () => {
     <form
       onSubmit={handleSubmit((data) => {
         const product = { ...data };
-        product.images = [product.prodImg, product.thumbnail];
+        product.images = [
+          product.image1,
+          product.image2,
+          product.image3,
+          product.thumbnail,
+        ];
         product.rating = 0;
-        delete product["prodImg"];
+        delete product["image1"];
+        delete product["image2"];
+        delete product["image3"];
         product.price = Number(product.price);
         product.stock = Number(product.stock);
         product.discountPercentage = Number(product.discountPercentage);
 
         if (params.id) {
           product.id = params.id;
-          product.rating = selectedProduct.rating || 0;
+          product.rating = selectedProduct?.rating || 0;
           dispatch(updateProductAsync(product));
+          alert.success("Product Updated");
+
           reset();
         } else {
           dispatch(createProductAsync(product));
+          alert.success("Product Created");
           reset();
         }
       })}
@@ -92,7 +107,9 @@ const ProductForm = () => {
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-6">
-              {selectedProduct?.deleted && <h2 className="text-red-500" >This Product is Deleted</h2>  }
+              {selectedProduct?.deleted && (
+                <h2 className="text-red-500">This Product is Deleted</h2>
+              )}
               <label
                 htmlFor="title"
                 className="block text-left text-sm font-medium leading-6 text-gray-900"
@@ -220,6 +237,66 @@ const ProductForm = () => {
                 </div>
               </div>
             </div>
+            <div className="sm:col-span-6">
+              <label
+                htmlFor="image1"
+                className="block text-left text-sm font-medium leading-6 text-gray-900"
+              >
+                Image 1
+              </label>
+              <div className="mt-2 block">
+                <div className="flex px-2 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                  <input
+                    type="text"
+                    {...register("image1", {
+                      required: "image1 required",
+                    })}
+                    id="image1"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="sm:col-span-6">
+              <label
+                htmlFor="image2"
+                className="block text-left text-sm font-medium leading-6 text-gray-900"
+              >
+                Image 2
+              </label>
+              <div className="mt-2 block">
+                <div className="flex px-2 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                  <input
+                    type="text"
+                    {...register("image2", {
+                      required: "image2 required",
+                    })}
+                    id="image2"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="sm:col-span-6">
+              <label
+                htmlFor="image3"
+                className="block text-left text-sm font-medium leading-6 text-gray-900"
+              >
+                Image 3
+              </label>
+              <div className="mt-2 block">
+                <div className="flex px-2 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                  <input
+                    type="text"
+                    {...register("image3", {
+                      required: "image3 required",
+                    })}
+                    id="image3"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+            </div>
 
             <div className="col-span-2">
               <label
@@ -268,7 +345,7 @@ const ProductForm = () => {
               </div>
             </div>
 
-            <div className="col-span-full">
+            {/* <div className="col-span-full">
               <label
                 htmlFor="image"
                 className="block text-left text-sm font-medium leading-6 text-gray-900"
@@ -301,7 +378,7 @@ const ProductForm = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

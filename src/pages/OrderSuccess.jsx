@@ -10,8 +10,7 @@ const OrderSuccess = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
   useEffect(() => {
-    console.log(user);
-    dispatch(resetCartAsync(user.id));
+    dispatch(resetCartAsync(user?.data.id));
     dispatch(resetOrder());
   }, [dispatch, user]);
   return (

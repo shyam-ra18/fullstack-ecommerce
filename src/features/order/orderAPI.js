@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function createOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await axios.post("http://localhost:8080/orders", order);
+    const response = await axios.post("http://localhost:8080/order", order);
     const data = await response.data;
     resolve({ data });
   });
@@ -11,7 +11,7 @@ export function createOrder(order) {
 export function updateOrder(order) {
   return new Promise(async (resolve) => {
     const response = await axios.patch(
-      "http://localhost:8080/orders/" + order.id,
+      "http://localhost:8080/order/" + order.id,
       order
     );
     const data = await response.data;
@@ -29,7 +29,7 @@ export function fetchAllOrders(pagination, sort) {
   }
   return new Promise(async (resolve) => {
     const response = await axios.get(
-      `http://localhost:8080/orders?${queryString}`
+      `http://localhost:8080/order?${queryString}`
     );
     const data = await response.data;
     const totalOrders = await response.headers.get("X-Total-Count");

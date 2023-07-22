@@ -70,7 +70,7 @@ const AdminOrders = () => {
         <div className="flex items-center justify-center bg-gray-100 font-sans">
           <div className="w-full">
             <div className="bg-white shadow-md rounded my-6">
-              <table className="min-w-max w-full table-auto">
+              <table className="table-auto">
                 <thead>
                   <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                     <th
@@ -128,12 +128,12 @@ const AdminOrders = () => {
                             <div className="mr-2">
                               <img
                                 className="w-6 h-6 rounded-full"
-                                src={item.thumbnail}
+                                src={item.product.thumbnail}
                               />
                             </div>
                             <span>
-                              {item.title} (#{item.quantity}) - $
-                              {discountedPrice(item)}{" "}
+                              {item.product.title} (#{item.quantity}) - $
+                              {discountedPrice(item.product)}{" "}
                             </span>
                           </div>
                         ))}
@@ -154,7 +154,7 @@ const AdminOrders = () => {
                           {order.selectedAddress.phone}
                         </div>
                       </td>
-                      <td className="py-3 flex gap-2 flex-col  px-6 text-center">
+                      <td className="py-3 px-6 text-center">
                         {order.id === editableOrderId ? (
                           <select
                             className="rounded-lg"

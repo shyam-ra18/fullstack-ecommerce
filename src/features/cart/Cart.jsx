@@ -79,7 +79,7 @@ export default function Cart() {
                         </h3>
                         <p className="ml-4">${discountedPrice(item.product)}</p>
                       </div>
-                      <p className="mt-1 text-sm text-gray-500">
+                      <p className="mt-1 text-left text-sm text-gray-500">
                         {item.product.brand}
                       </p>
                     </div>

@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLoggedInUserOrdersAsync, selectUserInfo, selectUserOrders } from "../UserSlice";
+import {
+  fetchLoggedInUserOrdersAsync,
+  selectUserInfo,
+  selectUserOrders,
+} from "../UserSlice";
 import { discountedPrice } from "../../../app/constants";
 
 const UserOrders = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectUserInfo);
+  const userInfo = useSelector(selectUserInfo);
   const orders = useSelector(selectUserOrders);
 
   useEffect(() => {
-    console.log(user);
-    dispatch(fetchLoggedInUserOrdersAsync(1));
-  }, []);
+      dispatch(fetchLoggedInUserOrdersAsync(userInfo?.id));
+
+  }, [dispatch, userInfo]);
   return (
     <>
       {orders?.map((order) => (
@@ -30,8 +34,8 @@ const UserOrders = () => {
                     <li key={item.id} className="flex py-6 ">
                       <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                         <img
-                          src={item.thumbnail}
-                          alt={item.title}
+                          src={item.product.thumbnail}
+                          alt={item.product.title}
                           className="h-full w-full object-cover object-center"
                         />
                       </div>
@@ -40,12 +44,16 @@ const UserOrders = () => {
                         <div>
                           <div className="flex justify-between text-base font-medium text-gray-900">
                             <h3>
-                              <a href={item.href}>{item.title}</a>
+                              <a href={item.product.href}>
+                                {item.product.title}
+                              </a>
                             </h3>
-                            <p className="ml-4">${discountedPrice(item)}</p>
+                            <p className="ml-4">
+                              ${discountedPrice(item.product)}
+                            </p>
                           </div>
                           <p className="mt-1 text-left  text-sm text-gray-500">
-                            {item.brand}
+                            {item.product.brand}
                           </p>
                         </div>
                         <div className="flex flex-1 items-end justify-between text-sm">
@@ -83,25 +91,24 @@ const UserOrders = () => {
                 className="flex justify-between gap-x-6 py-5 p-4 bg-gray-100 mb-3 border-2 rounded-md"
               >
                 <div className="flex gap-x-4">
-                 
                   <div className="min-w-0 flex-auto">
-                    <p className="text-sm font-semibold leading-6 text-gray-900">
-                      {/* {orders.selectedAddress.name} */}
+                    <p className="text-sm text-left font-semibold leading-6 text-gray-900">
+                      {order.selectedAddress.name}
                     </p>
                     <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                      {/* {orders.selectedAddress.street} */}
+                      {order.selectedAddress.street}
                     </p>
-                    <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                      {/* {orders.selectedAddress.pinCode} */}
+                    <p className="mt-1 text-left truncate text-xs leading-5 text-gray-500">
+                      {order.selectedAddress.pinCode}
                     </p>
                   </div>
                 </div>
                 <div className="hidden sm:flex sm:flex-col sm:items-end">
                   <p className="text-sm leading-6 text-gray-900">
-                    {/* Phone: {orders.selectedAddress.phone} */}
+                    Phone: {order.selectedAddress.phone}
                   </p>
                   <p className="text-sm leading-6 text-gray-900">
-                    {/* {orders.selectedAddress.city} */}
+                    {order.selectedAddress.city}
                   </p>
                 </div>
               </div>
